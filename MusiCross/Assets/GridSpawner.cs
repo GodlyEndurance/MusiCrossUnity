@@ -12,34 +12,31 @@ public class GridSpawner : MonoBehaviour
     public float spacing = 1.1f; // space between squares
     public float padding = 0.1f;
 
+    public Vector3 localScale;
+    public TextAsset patternfile;
     private string[] rowHintNumbers;
     private string[] colHintNumbers;
-    // private int[,] solvePattern = {
-    //     {0,0,0,0,0,0,0,0,0,0},
-    //     {0,0,0,0,1,1,1,1,1,0},
-    //     {0,0,0,1,1,1,1,1,1,0},
-    //     {0,0,0,1,0,0,0,0,1,0},
-    //     {0,0,0,1,0,0,0,0,1,0},
-    //     {0,0,0,1,0,0,0,0,1,0},
-    //     {0,0,0,1,0,0,1,1,1,0},
-    //     {0,1,1,1,0,0,1,1,1,0},
-    //     {0,1,1,1,0,0,0,0,0,0},
-    //     {0,0,0,0,0,0,0,0,0,0},
+    private int[,] solvePattern = new int[10,10];
+    void ParsePatternFile(string filename)
+    {
+        string bits = filename.Replace("\n","").Replace("\r","").Trim();
+        int index = 0;
+        for(int row = 0; row < 10; row++)
+        {
+            for(int col = 0; col < 10; col++)
+            {
+                Debug.Log(index);
+                char c = bits[index++];
+                if(c!= '0' && c != '1')
+                {
+                    break;
+                }
+                solvePattern[row,col]= c - '0';
+            }
+        }
+    }
 
-    // };
-    private int[,] solvePattern = {
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,1,1,1,1,1,0,0,0,0,0},
-        {0,0,0,1,1,1,1,1,1,0,0,0,0,0},
-        {0,0,0,1,0,0,0,0,1,0,0,0,0,0},
-        {0,0,0,1,0,0,0,0,1,0,0,0,0,0},
-        {0,0,0,1,0,0,0,0,1,0,0,0,0,0},
-        {0,0,0,1,0,0,1,1,1,0,0,0,0,0},
-        {0,1,1,1,0,0,1,1,1,0,0,0,0,0},
-        {0,1,1,1,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-
-    };
+    
     void GenHintNumbers()
     {
         rowHintNumbers = new string[gridHeight];
@@ -96,7 +93,7 @@ public class GridSpawner : MonoBehaviour
                 {
                     if (cellcount != 0)
                     {
-                        defaultText += " " + cellcount.ToString();
+                        defaultText += "\n" + cellcount.ToString();
                         howManySegments++;
                     }
                     cellcount = 0;
@@ -104,7 +101,7 @@ public class GridSpawner : MonoBehaviour
             }
             if (cellcount != 0)
             {
-                defaultText += " " + cellcount.ToString();
+                defaultText += "\n" + cellcount.ToString();
                 howManySegments++;
             }
             cellcount = 0;
@@ -115,17 +112,19 @@ public class GridSpawner : MonoBehaviour
             }
             colHintNumbers[i] = defaultText;
         }
-        for (int k = 0; k < gridHeight; k++)
-        {
-            Debug.Log("Row " + k.ToString() + ": " + rowHintNumbers[k]);
-        }
-        for (int k = 0; k < gridWidth; k++)
-        {
-            Debug.Log("Col " + k.ToString() + ": "+colHintNumbers[k]);           
-        }
+        // for (int k = 0; k < gridHeight; k++)
+        // {
+        //     Debug.Log("Row " + k.ToString() + ": " + rowHintNumbers[k]);
+        // }
+        // for (int k = 0; k < gridWidth; k++)
+        // {
+        //     Debug.Log("Col " + k.ToString() + ": "+colHintNumbers[k]);           
+        // }
     }
     void Start()
     {
+        ParsePatternFile(patternfile.text);
+
         if (squarePrefab == null || linePrefab == null)
         {
             Debug.LogError("No square prefab assigned!");
@@ -155,21 +154,34 @@ public class GridSpawner : MonoBehaviour
             label.transform.position = new Vector3(start.x -squareSize.x*(10.7f), label.transform.position.y, 0);
             tmp.alignment = TextAlignmentOptions.Right;
             tmp.color = Color.black;
-            tmp.fontSize = 30f;
+            tmp.fontSize = 40f;
             label.transform.localScale = Vector3.one * 0.2f;
             for (int x = 0; x < gridWidth; x++)
             {
                 Vector2 pos = new Vector2(start.x + x * xStep, start.y + y * yStep);
                 GameObject spawnedSquare = Instantiate(squarePrefab, pos, Quaternion.identity, transform);
-                //spawnedSquare.transform.localScale = new Vector3(0.96f, 0.96f, 0.96f); // MIKHAIL WAS HERE
+                spawnedSquare.transform.localScale = new Vector3(0.96f, 0.96f, 0.96f); // MIKHAIL WAS HERE
                 ClickableSquare cs = spawnedSquare.GetComponent<ClickableSquare>();
                 if (cs != null)
                 {
                     cs.setSolveState(solvePattern[gridHeight-y-1,x]); //set all to be clicked
                 }
             }
-
-
+        }
+        //Vertical grid numbers
+        for(int x = 0; x < gridWidth; x++)
+        {
+            Vector3 labelPos = new Vector3(start.x + x * xStep, start.y + gridHeight * yStep * 2-0.5f, 0f);
+            GameObject label = Instantiate(numberLabelPrefab, labelPos, Quaternion.identity, transform);
+            var tmp = label.GetComponent<TextMeshPro>();
+            tmp.text = colHintNumbers[x];
+            tmp.ForceMeshUpdate();
+            Bounds b = tmp.textBounds;
+            label.transform.position = new Vector3(label.transform.position.x, label.transform.position.y, 0);
+            tmp.alignment = TextAlignmentOptions.Bottom;
+            tmp.color = Color.black;
+            tmp.fontSize = 40f;
+            label.transform.localScale = Vector3.one * 0.2f;
         }
 
         /**
@@ -212,6 +224,7 @@ public class GridSpawner : MonoBehaviour
         //     Vector2 pos = new Vector2(start.x + (gridWidth - 1) * xStep / 2f, start.y - yStep / 2f + y * yStep);
    
         // }
+        transform.localScale = localScale;
 
     }
 }
