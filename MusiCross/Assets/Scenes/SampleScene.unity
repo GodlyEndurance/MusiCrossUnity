@@ -847,6 +847,7 @@ MonoBehaviour:
   gridHeight: 10
   spacing: 0
   padding: 0
+  localScale: {x: 0.6, y: 0.6, z: 1}
 --- !u!1 &1945932553
 GameObject:
   m_ObjectHideFlags: 0
