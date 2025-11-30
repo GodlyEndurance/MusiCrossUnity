@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEVEL 1
+  m_Text: LEVEL 2
 --- !u!222 &216120143
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -848,7 +848,8 @@ MonoBehaviour:
   spacing: 0
   padding: 0
   localScale: {x: 0.6, y: 0.6, z: 1}
-  patternfile: {fileID: 4900000, guid: c3ef7250d9a82b04db2b872c132b7692, type: 3}
+  patternfile: {fileID: 4900000, guid: 332c60fe95a8f6d468e62c8d26d59a90, type: 3}
+  solveColor: {r: 0.25584617, g: 0.7075472, b: 0.21026166, a: 1}
 --- !u!1 &1945932553
 GameObject:
   m_ObjectHideFlags: 0

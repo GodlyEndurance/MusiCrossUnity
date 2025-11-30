@@ -849,6 +849,7 @@ MonoBehaviour:
   padding: 0
   localScale: {x: 0.6, y: 0.6, z: 1}
   patternfile: {fileID: 4900000, guid: c3ef7250d9a82b04db2b872c132b7692, type: 3}
+  solveColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1945932553
 GameObject:
   m_ObjectHideFlags: 0
