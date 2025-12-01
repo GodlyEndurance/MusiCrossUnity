@@ -18,6 +18,7 @@ public class EnterScene : MonoBehaviour
     public AudioSource audioSource;
     private LookUpTableClipFileName lookUpTableClipFileName;
 
+    public string songName;
     public string musicFileName;
     private string nondefaultFileName;
 
@@ -67,6 +68,14 @@ public class EnterScene : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
 
+    }
+
+    public void BackLevel()
+    {
+        songName = "title_music";
+        MusicManager.SetCurrentMusicFile(songName, lookUpTableClipFileName);
+        MusicManager.PlayFile();
+        SceneManager.LoadScene(scene);
     }
 
     public void EnterLevel()

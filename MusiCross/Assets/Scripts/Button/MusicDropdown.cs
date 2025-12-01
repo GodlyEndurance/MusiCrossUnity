@@ -8,9 +8,12 @@ public class MusicDropdown : MonoBehaviour
     public Dropdown dropdown;
     public Toggle toggle;
 
+    private static string previousSong = "";
+
     // Start is called before the first frame update
     void Start()
     {
+
         CheckToSeeIfToggleWasAlreadyOn();
         // YOU CAN USE AddSong() TO ADD UNLOCKED SONGS TO DROPBAR WHEN THE LEVEL SELECTOR SCENE LOADS - MB
         // *** ONLY PROBLEM IS WE PROBABLY NEED A WAY TO FIGURE OUT WHEN A LEVEL IS BEAT ***
@@ -28,7 +31,35 @@ public class MusicDropdown : MonoBehaviour
 
         };
 
-        dropdown.AddOptions(options);
+        List<Dropdown.OptionData> optionsFinal = new List<Dropdown.OptionData> { };
+
+        if (!string.IsNullOrEmpty(previousSong))
+        {
+            Debug.Log(("The if statement of MusicDropdown:Start() ran. \n"));
+            optionsFinal.Add(new Dropdown.OptionData(previousSong));
+            foreach(Dropdown.OptionData item in options)
+            {
+                if (item.text != previousSong)
+                {
+                    optionsFinal.Add(item);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log(("The else statement of MusicDropdown:Start() ran. \n"));
+            foreach (Dropdown.OptionData item in options)
+            {
+                
+                if (new Dropdown.OptionData(previousSong) == item) { continue; }
+                optionsFinal.Add(item);
+            }
+        }
+
+        Debug.Log(("\nValue of previousSong: " + previousSong + "\n"));
+
+
+        dropdown.AddOptions(optionsFinal);
 
         CheckToSeeIfToggleWasAlreadyOn();
 
@@ -54,6 +85,8 @@ public class MusicDropdown : MonoBehaviour
         selectedSong = dropdown.options[dropdown.value].text;
         Debug.Log(("OnNewOptionPicked ran! "));
         Debug.Log(("Text: " + selectedSong + "\n"));
+        previousSong = selectedSong;
+
         return selectedSong;
     }
 

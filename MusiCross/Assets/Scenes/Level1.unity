@@ -411,7 +411,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cdea227ad474175b81f48c5c3018d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 
+  buttonOutput: 0
+  audioSource: {fileID: 0}
+  songName: 
+  musicFileName: 
+  musicDropDown: {fileID: 0}
+  scene: LevelSelect
 --- !u!114 &682844344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +614,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cdea227ad474175b81f48c5c3018d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonOutput: 0
+  audioSource: {fileID: 0}
+  songName: 
+  musicFileName: 
+  musicDropDown: {fileID: 0}
   scene: LevelSelect
 --- !u!114 &1538352855
 MonoBehaviour:

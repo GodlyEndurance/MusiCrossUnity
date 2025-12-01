@@ -1507,6 +1507,7 @@ MonoBehaviour:
   c2: {fileID: 8300000, guid: 006c61a0276314f9da1ec7093d0a351a, type: 3}
   c3: {fileID: 0}
   c4: {fileID: 0}
+  c5: {fileID: 0}
 --- !u!4 &587375726
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,9 +2428,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonOutput: 0
   audioSource: {fileID: 0}
-  musicFileName: 
+  musicFileName: minecraft_music
   musicDropDown: {fileID: 0}
-  scene: SampleScene
+  scene: Level2
 --- !u!114 &898562465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4459,9 +4460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonOutput: 0
   audioSource: {fileID: 0}
-  musicFileName: minecraft_music
+  musicFileName: title_music
   musicDropDown: {fileID: 0}
-  scene: SampleScene
+  scene: Level1
 --- !u!1 &2040000655
 GameObject:
   m_ObjectHideFlags: 0

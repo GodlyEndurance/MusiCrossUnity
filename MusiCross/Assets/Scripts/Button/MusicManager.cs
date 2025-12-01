@@ -6,6 +6,7 @@ public static class MusicManager
 {
     public static AudioSource source;
     public static AudioClip clip;
+    private static string defaultFile;
     private static string currentFilePlay;
 
     public static void SetCurrentMusicFile(string musicFileName, LookUpTableClipFileName lookUpTableClipFileName)
