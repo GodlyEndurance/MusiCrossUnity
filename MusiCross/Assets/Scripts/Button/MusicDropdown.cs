@@ -14,18 +14,23 @@ public class MusicDropdown : MonoBehaviour
         CheckToSeeIfToggleWasAlreadyOn();
         // YOU CAN USE AddSong() TO ADD UNLOCKED SONGS TO DROPBAR WHEN THE LEVEL SELECTOR SCENE LOADS - MB
         // *** ONLY PROBLEM IS WE PROBABLY NEED A WAY TO FIGURE OUT WHEN A LEVEL IS BEAT ***
+
+        // Dropdown music add
+        dropdown.options.Add(new Dropdown.OptionData("Something"));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Dropdown Stuff
-    public void OnNewOptionPicked()
+    public string OnNewOptionPicked()
     {
-        string selectedSong = dropdown.options[dropdown.value].text;
+        string selectedSong = "";
+        selectedSong = dropdown.options[dropdown.value].text;
+        return selectedSong;
     }
 
     void AddOption(string option)
@@ -48,8 +53,10 @@ public class MusicDropdown : MonoBehaviour
         }
     }
 
-    void CheckToSeeIfToggleWasAlreadyOn()
+    bool CheckToSeeIfToggleWasAlreadyOn()
     {
-        if (PlayerPrefs.GetInt("CustomMusic") == 1) { toggle.isOn = true; };
+        bool returnValue = false;
+        if (PlayerPrefs.GetInt("CustomMusic") == 1) { toggle.isOn = true; returnValue = true; };
+        return returnValue;
     }
 }

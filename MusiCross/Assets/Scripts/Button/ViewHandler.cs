@@ -18,15 +18,15 @@ public class ViewHandler : MonoBehaviour
         
     }
 
-    public void displayRespectiveView(ButtonOutput buttonOutput)
-    {
+    //public void displayRespectiveView(ButtonOutput buttonOutput)
+    //{
 
-        switch (buttonOutput)
-        {
-            case ButtonOutput.play: 
-            SceneManager.LoadScene(scene);
-    }
+    //    switch (buttonOutput)
+    //    {
+    //        case ButtonOutput.play: SceneManager.LoadScene(scene);
+
+    //    }
 
         
-    }
+    //}
 }
