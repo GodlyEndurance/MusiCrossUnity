@@ -13,6 +13,7 @@ public class ClickableSquare : MonoBehaviour
     private Color originalColor;
     public Color clickedColor = Color.red;
     private GameObject xMark;
+    private GridSpawner parentSpawner;
 
     private CellState state; //Enum for state. 0 = unclicked; 1 = clicked; 2 = crossed out.
     private CellState solveState;
@@ -20,6 +21,22 @@ public class ClickableSquare : MonoBehaviour
     public void setClickColor(Color color)
     {
         clickedColor = color;
+    }
+    public bool isCorrect()
+    {
+        if((solveState == CellState.Clicked && state == CellState.Clicked) ||
+        (solveState != CellState.Clicked && state != CellState.Clicked))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void SetParent(GridSpawner spawner)
+    {
+        parentSpawner = spawner;
     }
     void Start()
     {
@@ -41,23 +58,24 @@ public class ClickableSquare : MonoBehaviour
         xMark.SetActive(false);
         // Debug.Log("initialized");
     }
-    void OnMouseEnter() { Debug.Log(gameObject.name + " Enter with solve state " + solveState); }
+    //void OnMouseEnter() { Debug.Log(gameObject.name + " Enter with solve state " + solveState); }
     // void OnMouseOver()   { /* fires each frame while pointer is over — careful! */ }
-    void OnMouseExit() { Debug.Log(gameObject.name + " Exit"); }
+    //void OnMouseExit() { Debug.Log(gameObject.name + " Exit"); }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Pressed left-click.");
+            //Debug.Log("Pressed left-click.");
             HandleClick(0);
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Pressed right-click.");
+            //Debug.Log("Pressed right-click.");
             HandleClick(1);
         }
+        parentSpawner.handleCount += 1;
 
 
         // if (Input.GetMouseButtonDown(2))
@@ -66,52 +84,56 @@ public class ClickableSquare : MonoBehaviour
 
     void HandleClick(int mousebutton)
     {
-        Vector3 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 point = new Vector2(world.x, world.y);
-
-        Collider2D hit = Physics2D.OverlapPoint(point);
-
-        if (hit != null && hit.gameObject == gameObject)
+        if(parentSpawner.puzzleSolve == false)
         {
-            Debug.Log($"{gameObject.name} OnMouseDown fired at time {Time.time} with state {state}");
-            if (mousebutton == 0)
+            Vector3 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 point = new Vector2(world.x, world.y);
+
+            Collider2D hit = Physics2D.OverlapPoint(point);
+
+            if (hit != null && hit.gameObject == gameObject)
             {
-                Debug.Log("Left click");
-                if (state != CellState.Clicked)
+                //Debug.Log($"{gameObject.name} OnMouseDown fired at time {Time.time} with state {state}");
+                if (mousebutton == 0)
                 {
-                    sr.color = clickedColor;
-                    state = CellState.Clicked;
+                    //Debug.Log("Left click");
+                    if (state != CellState.Clicked)
+                    {
+                        sr.color = clickedColor;
+                        state = CellState.Clicked;
+                    }
+                    else
+                    {
+                        sr.color = originalColor;
+                        state = CellState.Unclicked;
+
+                    }
+                }
+                if (mousebutton == 1)
+                {
+                    //Debug.Log("Right click");
+                    if (state == CellState.Clicked || state == CellState.Crossed)
+                    {
+                        sr.color = originalColor;
+                        state = 0;
+                    }
+                    else if (state == 0)
+                    {
+                        state = CellState.Crossed;
+                    }
+                }
+                if (state == CellState.Crossed)
+                {
+                    xMark.SetActive(true);
                 }
                 else
                 {
-                    sr.color = originalColor;
-                    state = CellState.Unclicked;
-
+                    xMark.SetActive(false);
                 }
-            }
-            if (mousebutton == 1)
-            {
-                Debug.Log("Right click");
-                if (state == CellState.Clicked || state == CellState.Crossed)
-                {
-                    sr.color = originalColor;
-                    state = 0;
-                }
-                else if (state == 0)
-                {
-                    state = CellState.Crossed;
-                }
-            }
-            if (state == CellState.Crossed)
-            {
-                xMark.SetActive(true);
-            }
-            else
-            {
-                xMark.SetActive(false);
-            }
-            Debug.Log($"State now {state}");
+                //Debug.Log($"State now {state}");
+            }      
         }
+
     }
     public void setSolveState(int stateNum)
     {
@@ -123,7 +145,7 @@ public class ClickableSquare : MonoBehaviour
         {
             solveState = CellState.Clicked;
         }
-        Debug.Log($"spawned object with solve state {stateNum}");
+        //Debug.Log($"spawned object with solve state {stateNum}");
     }
 
 }
