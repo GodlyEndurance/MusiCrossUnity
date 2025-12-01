@@ -7,22 +7,21 @@ public class GridSpawner : MonoBehaviour
     public GameObject squarePrefab;
     public GameObject linePrefab;
     public GameObject numberLabelPrefab;
-    public int gridWidth;
-    public int gridHeight;
+    public const int gridWidth = 10;
+    public const int gridHeight = 10;
     public float spacing = 1.1f; // space between squares
     public float padding = 0.1f;
 
     public Vector3 localScale;
     public TextAsset patternfile;
     public Color solveColor;
-<<<<<<< Updated upstream
-=======
     public bool puzzleSolve = false;
-
->>>>>>> Stashed changes
     private string[] rowHintNumbers;
     private string[] colHintNumbers;
-    private int[,] solvePattern = new int[10,10];
+    private int[,] solvePattern = new int[gridWidth,gridHeight];
+    public int handleCount = 0;
+
+    private ClickableSquare[,] objectArray = new ClickableSquare[gridWidth,gridHeight];
     void ParsePatternFile(string filename)
     {
         string bits = filename.Replace("\n","").Replace("\r","").Trim();
@@ -31,7 +30,7 @@ public class GridSpawner : MonoBehaviour
         {
             for(int col = 0; col < 10; col++)
             {
-                Debug.Log(index);
+                //Debug.Log(index);
                 char c = bits[index++];
                 if(c!= '0' && c != '1')
                 {
@@ -172,9 +171,13 @@ public class GridSpawner : MonoBehaviour
                 {
                     cs.setSolveState(solvePattern[gridHeight-y-1,x]); //set all to be clicked
                     cs.setClickColor(solveColor);
+                    cs.SetParent(this);
+                    objectArray[y,x] = cs;
                 }
+
             }
         }
+
         //Vertical grid numbers
         for(int x = 0; x < gridWidth; x++)
         {
@@ -232,9 +235,19 @@ public class GridSpawner : MonoBehaviour
    
         // }
         transform.localScale = localScale;
+    }
+    bool setSolve = false;
+    void Update()
+    {
+        setSolve = true;
+        if(handleCount >= gridHeight * gridWidth)
+        {
+            for(int y = 0; y < gridHeight; y++)
+            {
+                for(int x = 0; x < gridHeight; x++)
+                {
+                    setSolve = setSolve && objectArray[y,x].isCorrect();
 
-<<<<<<< Updated upstream
-=======
                 }
 
             }
@@ -242,9 +255,9 @@ public class GridSpawner : MonoBehaviour
             {
                 Debug.Log("Puzzle Solved");
                 puzzleSolve = true;
+                ExitPuzzle();
             }
             handleCount = 0; 
         }
->>>>>>> Stashed changes
     }
 }

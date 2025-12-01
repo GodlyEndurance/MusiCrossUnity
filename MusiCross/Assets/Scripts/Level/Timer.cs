@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
     {
         gridSpawner = FindObjectOfType<GridSpawner>();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -55,7 +55,7 @@ public class Timer : MonoBehaviour
         {
             flicker += Time.deltaTime;
             if (flicker >= 2.0) { SceneManager.LoadScene(scene); }
-            
+
         }
     }
 }
