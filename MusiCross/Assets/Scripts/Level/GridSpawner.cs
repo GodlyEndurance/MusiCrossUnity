@@ -14,6 +14,7 @@ public class GridSpawner : MonoBehaviour
 
     public Vector3 localScale;
     public TextAsset patternfile;
+    public Color solveColor;
     private string[] rowHintNumbers;
     private string[] colHintNumbers;
     private int[,] solvePattern = new int[10,10];
@@ -165,6 +166,7 @@ public class GridSpawner : MonoBehaviour
                 if (cs != null)
                 {
                     cs.setSolveState(solvePattern[gridHeight-y-1,x]); //set all to be clicked
+                    cs.setClickColor(solveColor);
                 }
             }
         }

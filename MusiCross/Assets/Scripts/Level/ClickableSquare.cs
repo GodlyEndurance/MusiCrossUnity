@@ -17,6 +17,10 @@ public class ClickableSquare : MonoBehaviour
     private CellState state; //Enum for state. 0 = unclicked; 1 = clicked; 2 = crossed out.
     private CellState solveState;
 
+    public void setClickColor(Color color)
+    {
+        clickedColor = color;
+    }
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -121,4 +125,5 @@ public class ClickableSquare : MonoBehaviour
         }
         Debug.Log($"spawned object with solve state {stateNum}");
     }
+
 }
