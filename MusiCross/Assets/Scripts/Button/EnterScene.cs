@@ -78,6 +78,12 @@ public class EnterScene : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void exitProgram()
+    {
+        PlayerPrefs.SetInt("CustomMusic", 0);
+        Application.Quit();
+    }
+
     public void EnterLevel()
     {
         if (lookUpTableClipFileName.isEmpty()) { Debug.Log("Hashmap is empty! ."); }
