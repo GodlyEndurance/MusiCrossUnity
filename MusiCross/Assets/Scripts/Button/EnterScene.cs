@@ -15,7 +15,8 @@ public class EnterScene : MonoBehaviour
 {
     Text text;
     public ButtonOutput buttonOutput;
-    private ViewHandler ViewHandler;
+    public AudioSource audioSource;
+    private LookUpTableClipFileName lookUpTableClipFileName;
 
     public string musicFileName;
     private string nondefaultFileName;
@@ -29,6 +30,9 @@ public class EnterScene : MonoBehaviour
     {
         if (musicDropDown == null)
             musicDropDown = FindObjectOfType<MusicDropdown>();
+
+        if (lookUpTableClipFileName == null)
+            lookUpTableClipFileName = FindObjectOfType<LookUpTableClipFileName>();
 
         //if (MusicManager == null)
         //    musicManager = FindObjectOfType<MusicManager>();
@@ -67,7 +71,8 @@ public class EnterScene : MonoBehaviour
 
     public void EnterLevel()
     {
-        
+        if (lookUpTableClipFileName.isEmpty()) { Debug.Log("Hashmap is empty! ."); }
+
         if (!AreReferencesValid()) {
             // SceneManager.LoadScene(scene);
 
@@ -78,22 +83,30 @@ public class EnterScene : MonoBehaviour
         // Default
         if (!musicDropDown.CheckToSeeIfToggleWasAlreadyOn())
         {
-            MusicManager.SetCurrentMusicFile(musicFileName);
             
-
+            MusicManager.SetCurrentMusicFile(musicFileName, lookUpTableClipFileName);
+            MusicManager.PlayFile();
             SceneManager.LoadScene(scene);
         }
         // Non-default
         else
         {
             nondefaultFileName = musicDropDown.OnNewOptionPicked();
-            if (nondefaultFileName == "" ||
-                nondefaultFileName == "NONE") {// TO ADD
-                                              }
+            if (string.IsNullOrEmpty(nondefaultFileName) ||
+                nondefaultFileName == "NONE")
+            {
+                Debug.Log("Please select the music you want to use.");
+            }
             // { System print out: "Please select the music you want to use." }
 
 
-            else { MusicManager.SetCurrentMusicFile(nondefaultFileName); SceneManager.LoadScene(scene); }
+            else {
+
+                
+                MusicManager.SetCurrentMusicFile(nondefaultFileName, lookUpTableClipFileName);
+                MusicManager.PlayFile(); // Actually play the file
+                SceneManager.LoadScene(scene);
+            }
 
             
         }
@@ -109,6 +122,8 @@ public class EnterScene : MonoBehaviour
             Debug.LogError("MusicDropdown reference is null!");
             return false;
         }
+
+
         //if (MusicManager == null)
         //{
         //    Debug.LogError("MusicManager reference is null!");

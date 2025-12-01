@@ -16,7 +16,27 @@ public class MusicDropdown : MonoBehaviour
         // *** ONLY PROBLEM IS WE PROBABLY NEED A WAY TO FIGURE OUT WHEN A LEVEL IS BEAT ***
 
         // Dropdown music add
-        dropdown.options.Add(new Dropdown.OptionData("Something"));
+        dropdown.ClearOptions();
+
+        // Add options
+        List<Dropdown.OptionData> options = new List<Dropdown.OptionData>
+        {
+            new Dropdown.OptionData("title_music"),
+            new Dropdown.OptionData("minecraft_music")
+            // Add more options here as needed
+
+
+        };
+
+        dropdown.AddOptions(options);
+
+        CheckToSeeIfToggleWasAlreadyOn();
+
+
+        dropdown.value = 0;
+        dropdown.RefreshShownValue();
+
+        Debug.Log(("MusicDropdown ran! "));
     }
 
     // Update is called once per frame
@@ -26,10 +46,14 @@ public class MusicDropdown : MonoBehaviour
     }
 
     // Dropdown Stuff
+    public void triggerForDropdown() { OnNewOptionPicked(); }
+
     public string OnNewOptionPicked()
     {
         string selectedSong = "";
         selectedSong = dropdown.options[dropdown.value].text;
+        Debug.Log(("OnNewOptionPicked ran! "));
+        Debug.Log(("Text: " + selectedSong + "\n"));
         return selectedSong;
     }
 
