@@ -86,45 +86,46 @@ public class EnterScene : MonoBehaviour
 
     public void EnterLevel()
     {
-        if (lookUpTableClipFileName.isEmpty()) { Debug.Log("Hashmap is empty! ."); }
+        // Checking for success condition
+            if (lookUpTableClipFileName.isEmpty()) { Debug.Log("Hashmap is empty! ."); }
 
-        if (!AreReferencesValid()) {
-            // SceneManager.LoadScene(scene);
+            if (!AreReferencesValid()) {
+                // SceneManager.LoadScene(scene);
 
-            Debug.LogError("No reference -> NULL REFERENCES!");
-            return;
-        }
+                Debug.LogError("No reference -> NULL REFERENCES!");
+                return;
+            }
 
         // Default
-        if (!musicDropDown.CheckToSeeIfToggleWasAlreadyOn())
-        {
-            
-            MusicManager.SetCurrentMusicFile(musicFileName, lookUpTableClipFileName);
-            MusicManager.PlayFile();
-            SceneManager.LoadScene(scene);
-        }
-        // Non-default
-        else
-        {
-            nondefaultFileName = musicDropDown.OnNewOptionPicked();
-            if (string.IsNullOrEmpty(nondefaultFileName) ||
-                nondefaultFileName == "NONE")
+            if (!musicDropDown.CheckToSeeIfToggleWasAlreadyOn())
             {
-                Debug.Log("Please select the music you want to use.");
-            }
-            // { System print out: "Please select the music you want to use." }
-
-
-            else {
-
-                
-                MusicManager.SetCurrentMusicFile(nondefaultFileName, lookUpTableClipFileName);
-                MusicManager.PlayFile(); // Actually play the file
+            
+                MusicManager.SetCurrentMusicFile(musicFileName, lookUpTableClipFileName);
+                MusicManager.PlayFile();
                 SceneManager.LoadScene(scene);
             }
+        // Non-default
+            else
+            {
+                nondefaultFileName = musicDropDown.OnNewOptionPicked();
+                if (string.IsNullOrEmpty(nondefaultFileName) ||
+                    nondefaultFileName == "NONE")
+                {
+                    Debug.Log("Please select the music you want to use.");
+                }
+                // { System print out: "Please select the music you want to use." }
+
+
+                else {
+
+                
+                    MusicManager.SetCurrentMusicFile(nondefaultFileName, lookUpTableClipFileName);
+                    MusicManager.PlayFile(); // Actually play the file
+                    SceneManager.LoadScene(scene);
+                }
 
             
-        }
+            }
 
 
         // ViewHandler.displayRespectiveView(buttonOutput);

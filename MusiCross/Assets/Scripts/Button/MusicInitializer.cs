@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class MusicInitializer : MonoBehaviour
 {
+    static bool songPlayedAlready = false;
+
     void Start()
     {
-        // Get or create AudioSource
-        AudioSource audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
+
+        if (!songPlayedAlready)
+        {  // Get or create AudioSource
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+
+            // Initialize the MusicManager
+            MusicManager.Initialize(audioSource);
+
+            // Make this object persist between scenes if you want continuous music
+            DontDestroyOnLoad(gameObject);
+            songPlayedAlready = true;
         }
-
-        // Initialize the MusicManager
-        MusicManager.Initialize(audioSource);
-
-        // Make this object persist between scenes if you want continuous music
-        DontDestroyOnLoad(gameObject);
+       
     }
 }
