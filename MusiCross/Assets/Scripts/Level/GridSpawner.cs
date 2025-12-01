@@ -15,6 +15,11 @@ public class GridSpawner : MonoBehaviour
     public Vector3 localScale;
     public TextAsset patternfile;
     public Color solveColor;
+<<<<<<< Updated upstream
+=======
+    public bool puzzleSolve = false;
+
+>>>>>>> Stashed changes
     private string[] rowHintNumbers;
     private string[] colHintNumbers;
     private int[,] solvePattern = new int[10,10];
@@ -228,5 +233,18 @@ public class GridSpawner : MonoBehaviour
         // }
         transform.localScale = localScale;
 
+<<<<<<< Updated upstream
+=======
+                }
+
+            }
+            if (setSolve)
+            {
+                Debug.Log("Puzzle Solved");
+                puzzleSolve = true;
+            }
+            handleCount = 0; 
+        }
+>>>>>>> Stashed changes
     }
 }
