@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public enum ButtonOutput
 {
@@ -13,14 +13,28 @@ public enum ButtonOutput
 
 public class EnterScene : MonoBehaviour
 {
-
+    Text text;
     public ButtonOutput buttonOutput;
     private ViewHandler ViewHandler;
 
+    public string musicFileName;
+    private string nondefaultFileName;
 
-    MusicDropDown musicDropDown;
+
+    [SerializeField] private MusicDropdown musicDropDown;
     
-    
+
+
+    void Start()
+    {
+        if (musicDropDown == null)
+            musicDropDown = FindObjectOfType<MusicDropdown>();
+
+        //if (MusicManager == null)
+        //    musicManager = FindObjectOfType<MusicManager>();
+    }
+
+
     // Case 1: Default Button Play
     // MusicDropDown: CheckToSeeIfToggleWasAlreadyOn -> if false, then do this
     // NOTE: the button must have its respective song and scene in the inspector panel
@@ -47,12 +61,60 @@ public class EnterScene : MonoBehaviour
     
     public void Enter()
     {
-        
-
         SceneManager.LoadScene(scene);
-        // ViewHandler.displayRespectiveView(buttonOutput);
 
     }
 
+    public void EnterLevel()
+    {
+        
+        if (!AreReferencesValid()) {
+            // SceneManager.LoadScene(scene);
+
+            Debug.LogError("No reference -> NULL REFERENCES!");
+            return;
+        }
+
+        // Default
+        if (!musicDropDown.CheckToSeeIfToggleWasAlreadyOn())
+        {
+            MusicManager.SetCurrentMusicFile(musicFileName);
+            
+
+            SceneManager.LoadScene(scene);
+        }
+        // Non-default
+        else
+        {
+            nondefaultFileName = musicDropDown.OnNewOptionPicked();
+            if (nondefaultFileName == "" ||
+                nondefaultFileName == "NONE") {// TO ADD
+                                              }
+            // { System print out: "Please select the music you want to use." }
+
+
+            else { MusicManager.SetCurrentMusicFile(nondefaultFileName); SceneManager.LoadScene(scene); }
+
+            
+        }
+
+
+        // ViewHandler.displayRespectiveView(buttonOutput);
+    }
+
+    private bool AreReferencesValid()
+    {
+        if (musicDropDown == null)
+        {
+            Debug.LogError("MusicDropdown reference is null!");
+            return false;
+        }
+        //if (MusicManager == null)
+        //{
+        //    Debug.LogError("MusicManager reference is null!");
+        //    return false;
+        //}
+        return true;
+    }
 
 }

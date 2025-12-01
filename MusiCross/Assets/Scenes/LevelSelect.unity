@@ -985,7 +985,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 405390531}
         m_TargetAssemblyTypeName: EnterScene, Assembly-CSharp
-        m_MethodName: Enter
+        m_MethodName: EnterLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2413,7 +2413,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 898562464}
         m_TargetAssemblyTypeName: EnterScene, Assembly-CSharp
-        m_MethodName: Enter
+        m_MethodName: EnterLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3383,7 +3383,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1561589807}
         m_TargetAssemblyTypeName: EnterScene, Assembly-CSharp
-        m_MethodName: Enter
+        m_MethodName: EnterLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4110,7 +4110,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1759720280}
         m_TargetAssemblyTypeName: EnterScene, Assembly-CSharp
-        m_MethodName: Enter
+        m_MethodName: EnterLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4319,7 +4319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1976333706}
         m_TargetAssemblyTypeName: EnterScene, Assembly-CSharp
-        m_MethodName: Enter
+        m_MethodName: EnterLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

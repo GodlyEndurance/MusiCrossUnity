@@ -411,6 +411,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cdea227ad474175b81f48c5c3018d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonOutput: 0
+  musicFileName: 
+  musicDropDown: {fileID: 0}
   scene: 
 --- !u!114 &682844344
 MonoBehaviour:
@@ -609,6 +612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cdea227ad474175b81f48c5c3018d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonOutput: 0
+  musicFileName: 
+  musicDropDown: {fileID: 0}
   scene: LevelSelect
 --- !u!114 &1538352855
 MonoBehaviour:
@@ -848,6 +854,7 @@ MonoBehaviour:
   spacing: 0
   padding: 0
   localScale: {x: 0.6, y: 0.6, z: 1}
+  patternfile: {fileID: 4900000, guid: c3ef7250d9a82b04db2b872c132b7692, type: 3}
 --- !u!1 &1945932553
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,7 +53,7 @@ public class MusicDropdown : MonoBehaviour
         }
     }
 
-    bool CheckToSeeIfToggleWasAlreadyOn()
+    public bool CheckToSeeIfToggleWasAlreadyOn()
     {
         bool returnValue = false;
         if (PlayerPrefs.GetInt("CustomMusic") == 1) { toggle.isOn = true; returnValue = true; };
