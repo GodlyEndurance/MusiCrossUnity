@@ -16,7 +16,7 @@ public class EnterScene : MonoBehaviour
     Text text;
     public ButtonOutput buttonOutput;
     public AudioSource audioSource;
-    private LookUpTableClipFileName lookUpTableClipFileName;
+    private static LookUpTableClipFileName lookUpTableClipFileName;
 
     public string songName;
     public string musicFileName;
@@ -87,7 +87,7 @@ public class EnterScene : MonoBehaviour
     public void EnterLevel()
     {
         // Checking for success condition
-            if (lookUpTableClipFileName.isEmpty()) { Debug.Log("Hashmap is empty! ."); }
+            if (lookUpTableClipFileName.isEmptyAudio()) { Debug.Log("Hashmap is empty! ."); }
 
             if (!AreReferencesValid()) {
                 // SceneManager.LoadScene(scene);
@@ -107,6 +107,7 @@ public class EnterScene : MonoBehaviour
         // Non-default
             else
             {
+
                 nondefaultFileName = musicDropDown.OnNewOptionPicked();
                 if (string.IsNullOrEmpty(nondefaultFileName) ||
                     nondefaultFileName == "NONE")

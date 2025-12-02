@@ -256,7 +256,7 @@ public class GridSpawner : MonoBehaviour
             {
                 Debug.Log("Puzzle Solved");
                 puzzleSolve = true;
-                //ExitPuzzle();
+
             }
             handleCount = 0; 
         }
