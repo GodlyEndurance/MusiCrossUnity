@@ -6,6 +6,8 @@ public class LookUpTableClipFileName : MonoBehaviour
 {
     public AudioClip c1, c2, c3, c4, c5;
     private Dictionary<string, AudioClip> audioClipMap = new Dictionary<string, AudioClip>();
+    private Dictionary<string, bool> checkMusicUnlocked = new Dictionary<string, bool>();
+    private Dictionary<string, string> sceneLinkMusic = new Dictionary<string, string>();
     private int count = 0;
 
     void Start()
@@ -21,6 +23,14 @@ public class LookUpTableClipFileName : MonoBehaviour
 
         audioClipMap.Add("title_music", c1 );
         audioClipMap.Add("minecraft_music", c2);
+
+        checkMusicUnlocked.Add("title_music", true);
+        checkMusicUnlocked.Add("minecraft_music", false);
+
+        sceneLinkMusic.Add("Level1", "title_music");
+        sceneLinkMusic.Add("Level2", "minecraft_music");
+
+
         // audioClipMap.Add("game_over", Resources.Load<AudioClip>("Audio/game_over"));
 
 
@@ -39,6 +49,47 @@ public class LookUpTableClipFileName : MonoBehaviour
             return null;
         }
     }
+
+    public Dictionary<string,bool> GoThroughCheckMusicUnlockedMap()
+    {
+        return checkMusicUnlocked;
+    }
+
+
+    public bool GetMusicUnlockedOrNot(string clipName)
+    {
+        bool value = false;
+        if (checkMusicUnlocked.ContainsKey(clipName))
+        {
+            Debug.Log("Hashmap key: " + clipName + "| Hashmap value: " + checkMusicUnlocked[clipName]);
+
+            if (!checkMusicUnlocked[clipName]) { checkMusicUnlocked.Remove(clipName); checkMusicUnlocked.Add(clipName, true); }
+            value = checkMusicUnlocked[clipName]; // true or false
+
+            Debug.Log("The music has been unlocked!\n");
+            Debug.Log("The music that was unlocked: " + clipName + " |Value: " + checkMusicUnlocked[clipName] + "\n");
+
+        }
+        else
+        {
+            //Debug.LogWarning($"AudioClip '{clipName}' not found in lookup table!");
+            //return false;
+        }
+        return value;
+    }
+
+    public void UnlockMusic(string level)
+    {
+        if (sceneLinkMusic.ContainsKey(level))
+        {
+            GetMusicUnlockedOrNot(sceneLinkMusic[level]);
+        }
+        else
+        {
+            Debug.LogWarning($"level '{level}' not found in lookup table!");
+        }
+    }
+
 
     public bool TryGetAudioClip(string clipName, out AudioClip clip)
     {

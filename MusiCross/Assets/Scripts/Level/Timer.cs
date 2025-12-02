@@ -16,10 +16,13 @@ public class Timer : MonoBehaviour
     private GridSpawner gridSpawner;
     private string scene = "LevelSelect";
 
+    private static LookUpTableClipFileName lookUpTableClipFileName;
+
     // Start is called before the first frame update
     void Start()
     {
         gridSpawner = FindObjectOfType<GridSpawner>();
+        lookUpTableClipFileName = FindObjectOfType<LookUpTableClipFileName>();
     }
 
     // Update is called once per frame
@@ -54,7 +57,14 @@ public class Timer : MonoBehaviour
         else
         {
             flicker += Time.deltaTime;
-            if (flicker >= 2.0) { SceneManager.LoadScene(scene); }
+            if (flicker >= 2.0) {
+                string currentScene = SceneManager.GetActiveScene().name;
+                lookUpTableClipFileName.UnlockMusic(currentScene);
+                SceneManager.LoadScene(scene);
+                
+            }
+
+            
 
         }
     }

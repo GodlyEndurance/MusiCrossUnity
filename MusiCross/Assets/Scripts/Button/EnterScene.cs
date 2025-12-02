@@ -16,7 +16,7 @@ public class EnterScene : MonoBehaviour
     Text text;
     public ButtonOutput buttonOutput;
     public AudioSource audioSource;
-    private LookUpTableClipFileName lookUpTableClipFileName;
+    private static LookUpTableClipFileName lookUpTableClipFileName;
 
     public string songName;
     public string musicFileName;
@@ -107,6 +107,7 @@ public class EnterScene : MonoBehaviour
         // Non-default
             else
             {
+
                 nondefaultFileName = musicDropDown.OnNewOptionPicked();
                 if (string.IsNullOrEmpty(nondefaultFileName) ||
                     nondefaultFileName == "NONE")

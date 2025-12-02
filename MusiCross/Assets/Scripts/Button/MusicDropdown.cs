@@ -7,12 +7,14 @@ public class MusicDropdown : MonoBehaviour
 {
     public Dropdown dropdown;
     public Toggle toggle;
+    LookUpTableClipFileName lookUpTableClipFileName;
 
     private static string previousSong = "";
 
     // Start is called before the first frame update
     void Start()
     {
+        lookUpTableClipFileName = FindObjectOfType<LookUpTableClipFileName>();
 
         CheckToSeeIfToggleWasAlreadyOn();
         // YOU CAN USE AddSong() TO ADD UNLOCKED SONGS TO DROPBAR WHEN THE LEVEL SELECTOR SCENE LOADS - MB
@@ -23,14 +25,25 @@ public class MusicDropdown : MonoBehaviour
 
         // Add options
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>
-        {
-            new Dropdown.OptionData("title_music"),
-            new Dropdown.OptionData("minecraft_music")
-            // Add more options here as needed
+        { 
+        //new Dropdown.OptionData("title_music"),
+        //new Dropdown.OptionData("minecraft_music")
+        // Add more options here as needed
 
 
         };
 
+        foreach (var item in lookUpTableClipFileName.GoThroughCheckMusicUnlockedMap().Keys)
+        {
+            if (lookUpTableClipFileName.GoThroughCheckMusicUnlockedMap().TryGetValue(item, out bool isUnlocked) && isUnlocked)
+            {
+                options.Add(new Dropdown.OptionData(item));
+                Debug.Log("The checker for unlocked music to display in the dropdown list ran. \n");
+            }
+        }
+
+
+        // Makes sure that the music tracks are unique, and that there are not duplicate tracks in the dropdown list.
         List<Dropdown.OptionData> optionsFinal = new List<Dropdown.OptionData> { };
 
         if (!string.IsNullOrEmpty(previousSong))
@@ -116,4 +129,5 @@ public class MusicDropdown : MonoBehaviour
         if (PlayerPrefs.GetInt("CustomMusic") == 1) { toggle.isOn = true; returnValue = true; };
         return returnValue;
     }
+
 }
