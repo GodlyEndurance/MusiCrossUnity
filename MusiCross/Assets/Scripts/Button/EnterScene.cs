@@ -87,7 +87,7 @@ public class EnterScene : MonoBehaviour
     public void EnterLevel()
     {
         // Checking for success condition
-            if (lookUpTableClipFileName.isEmpty()) { Debug.Log("Hashmap is empty! ."); }
+            if (lookUpTableClipFileName.isEmptyAudio()) { Debug.Log("Hashmap is empty! ."); }
 
             if (!AreReferencesValid()) {
                 // SceneManager.LoadScene(scene);

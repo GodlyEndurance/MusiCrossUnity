@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     private GridSpawner gridSpawner;
     private string scene = "LevelSelect";
 
-    private static LookUpTableClipFileName lookUpTableClipFileName;
+    private LookUpTableClipFileName lookUpTableClipFileName;
 
     // Start is called before the first frame update
     void Start()
