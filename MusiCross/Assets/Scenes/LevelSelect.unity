@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 59719973}
   - component: {fileID: 59719972}
   - component: {fileID: 59719971}
+  - component: {fileID: 59719974}
   m_Layer: 5
   m_Name: Level 1
   m_TagString: Untagged
@@ -324,6 +325,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59719969}
   m_CullTransparentMesh: 1
+--- !u!114 &59719974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59719969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2786375fca44b498b5e6f644138eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textbox: {fileID: 386630118}
+  levelNumber: 1
+  levelSceneName: Level1
 --- !u!1 &155607847
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +590,7 @@ GameObject:
   - component: {fileID: 307910037}
   - component: {fileID: 307910036}
   - component: {fileID: 307910035}
+  - component: {fileID: 307910038}
   m_Layer: 5
   m_Name: Level 2
   m_TagString: Untagged
@@ -684,6 +701,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307910033}
   m_CullTransparentMesh: 1
+--- !u!114 &307910038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307910033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2786375fca44b498b5e6f644138eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textbox: {fileID: 767623695}
+  levelNumber: 2
+  levelSceneName: Level2
 --- !u!1 &338104635
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +728,7 @@ GameObject:
   - component: {fileID: 338104639}
   - component: {fileID: 338104638}
   - component: {fileID: 338104637}
+  - component: {fileID: 338104640}
   m_Layer: 5
   m_Name: Level 3
   m_TagString: Untagged
@@ -806,6 +839,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338104635}
   m_CullTransparentMesh: 1
+--- !u!114 &338104640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338104635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2786375fca44b498b5e6f644138eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textbox: {fileID: 1199949897}
+  levelNumber: 3
+  levelSceneName: Level3
 --- !u!1 &386630116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,6 +2241,7 @@ GameObject:
   - component: {fileID: 832188813}
   - component: {fileID: 832188812}
   - component: {fileID: 832188811}
+  - component: {fileID: 832188814}
   m_Layer: 5
   m_Name: Level 4
   m_TagString: Untagged
@@ -2303,6 +2352,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832188809}
   m_CullTransparentMesh: 1
+--- !u!114 &832188814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832188809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2786375fca44b498b5e6f644138eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textbox: {fileID: 40546700}
+  levelNumber: 4
+  levelSceneName: Level4
 --- !u!1 &861449988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3679,6 +3743,7 @@ GameObject:
   - component: {fileID: 1662121176}
   - component: {fileID: 1662121175}
   - component: {fileID: 1662121174}
+  - component: {fileID: 1662121177}
   m_Layer: 5
   m_Name: Level 5
   m_TagString: Untagged
@@ -3789,6 +3854,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662121172}
   m_CullTransparentMesh: 1
+--- !u!114 &1662121177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662121172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2786375fca44b498b5e6f644138eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textbox: {fileID: 2040000657}
+  levelNumber: 5
+  levelSceneName: Level5
 --- !u!1 &1702903870
 GameObject:
   m_ObjectHideFlags: 0

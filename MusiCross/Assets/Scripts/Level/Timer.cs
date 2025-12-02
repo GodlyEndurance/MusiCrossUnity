@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+
 public class Timer : MonoBehaviour
 {
     public Text textbox;
@@ -15,11 +17,13 @@ public class Timer : MonoBehaviour
     private string zeroForMinutes;
     private GridSpawner gridSpawner;
     private string scene = "LevelSelect";
+    private string sceneName;
 
     // Start is called before the first frame update
     void Start()
     {
         gridSpawner = FindObjectOfType<GridSpawner>();
+        sceneName = gameObject.scene.name;
     }
 
     // Update is called once per frame
@@ -53,9 +57,27 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            // Best Time Check
+            float floatTime = hours * 60 * 60 + minutes * 60 + seconds;
+            if (LevelTimes.getLevelTimeFloat(sceneName) == 0f || LevelTimes.getLevelTimeFloat(sceneName) > floatTime)
+            {
+                // ReFormat Time To Save to Player Best Times
+                time = "";
+                time += hours + ":";
+                if (minutes < 10) { time += "0" + minutes + ":"; } else { time += minutes + ":"; }
+                if (seconds >= 9.5f) { time += seconds.ToString("F0"); } else { time += "0" + seconds.ToString("F0"); }
+
+                // Save Best Time
+                LevelTimes.setLevelTime(sceneName, time);
+                LevelTimes.setLevelTimeFloat(sceneName, floatTime);
+            }
+
+
+
+
+            // Exit To Select Level Scene
             flicker += Time.deltaTime;
             if (flicker >= 2.0) { SceneManager.LoadScene(scene); }
-
         }
     }
 }
