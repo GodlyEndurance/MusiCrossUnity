@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 437299624}
   - component: {fileID: 437299626}
   - component: {fileID: 437299625}
+  - component: {fileID: 437299627}
   m_Layer: 5
   m_Name: Win Box
   m_TagString: Untagged
@@ -305,16 +306,16 @@ RectTransform:
   m_GameObject: {fileID: 437299623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.71074694, y: 0.71074694, z: 0.71074694}
+  m_LocalScale: {x: 2, y: 2, z: 0.71074694}
   m_Children:
   - {fileID: 654071014}
   m_Father: {fileID: 689352481}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 878.5, y: -783.42}
-  m_SizeDelta: {x: 413.7235, y: 51.1646}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0.5, y: 78.2}
+  m_SizeDelta: {x: 413.7235, y: 51.16461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &437299625
 MonoBehaviour:
@@ -354,6 +355,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437299623}
   m_CullTransparentMesh: 1
+--- !u!114 &437299627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437299623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09456e76e303e3a4cb76b55ffbabf84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxText: {fileID: 654071015}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,11 +510,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1057,6 +1071,8 @@ MonoBehaviour:
   squarePrefab: {fileID: 1720230726440998518, guid: f642294805050774c9caed82c8191b9c, type: 3}
   linePrefab: {fileID: 6055511191745468727, guid: 591c82670c4e90a4f9aab5d723b69988, type: 3}
   numberLabelPrefab: {fileID: 1093238079287136309, guid: 061bf13245d93b1479bb81b0b5b24608, type: 3}
+  gridWidth: 10
+  gridHeight: 10
   spacing: 0
   padding: 0
   localScale: {x: 0.6, y: 0.6, z: 1}
