@@ -23,6 +23,7 @@ public class LookUpTableClipFileName : MonoBehaviour
 
         audioClipMap.Add("title_music", c1 );
         audioClipMap.Add("minecraft_music", c2);
+<<<<<<< HEAD
 
         checkMusicUnlocked.Add("title_music", true);
         checkMusicUnlocked.Add("minecraft_music", false);
@@ -31,9 +32,11 @@ public class LookUpTableClipFileName : MonoBehaviour
         sceneLinkMusic.Add("Level2", "minecraft_music");
 
 
+=======
         audioClipMap.Add("zelda_music", c3);
         audioClipMap.Add("christmas_music",c4);
         audioClipMap.Add("ff_music",c5);
+>>>>>>> main
         // audioClipMap.Add("game_over", Resources.Load<AudioClip>("Audio/game_over"));
 
 
