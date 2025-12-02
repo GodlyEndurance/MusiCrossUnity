@@ -7,8 +7,8 @@ public class GridSpawner : MonoBehaviour
     public GameObject squarePrefab;
     public GameObject linePrefab;
     public GameObject numberLabelPrefab;
-    public const int gridWidth = 10;
-    public const int gridHeight = 10;
+    public int gridWidth = 10;
+    public int gridHeight = 10;
     public float spacing = 1.1f; // space between squares
     public float padding = 0.1f;
 
@@ -18,17 +18,17 @@ public class GridSpawner : MonoBehaviour
     public bool puzzleSolve = false;
     private string[] rowHintNumbers;
     private string[] colHintNumbers;
-    private int[,] solvePattern = new int[gridWidth,gridHeight];
+    private int[,] solvePattern = new int[25,25];
     public int handleCount = 0;
 
-    private ClickableSquare[,] objectArray = new ClickableSquare[gridWidth,gridHeight];
+    private ClickableSquare[,] objectArray = new ClickableSquare[25,25];
     void ParsePatternFile(string filename)
     {
         string bits = filename.Replace("\n","").Replace("\r","").Trim();
         int index = 0;
-        for(int row = 0; row < 10; row++)
+        for(int row = 0; row < gridHeight; row++)
         {
-            for(int col = 0; col < 10; col++)
+            for(int col = 0; col < gridWidth; col++)
             {
                 //Debug.Log(index);
                 char c = bits[index++];
@@ -181,7 +181,7 @@ public class GridSpawner : MonoBehaviour
         //Vertical grid numbers
         for(int x = 0; x < gridWidth; x++)
         {
-            Vector3 labelPos = new Vector3(start.x + x * xStep, start.y + gridHeight * yStep * 2-0.5f, 0f);
+            Vector3 labelPos = new Vector3(start.x + x * xStep, start.y + (gridHeight+10) * yStep-0.5f, 0f);
             GameObject label = Instantiate(numberLabelPrefab, labelPos, Quaternion.identity, transform);
             var tmp = label.GetComponent<TextMeshPro>();
             tmp.text = colHintNumbers[x];
@@ -236,26 +236,27 @@ public class GridSpawner : MonoBehaviour
         // }
         transform.localScale = localScale;
     }
-    bool setSolve = false;
+
     void Update()
     {
-        setSolve = true;
+        bool setSolve = true;
         if(handleCount >= gridHeight * gridWidth)
         {
             for(int y = 0; y < gridHeight; y++)
             {
-                for(int x = 0; x < gridHeight; x++)
+                for(int x = 0; x < gridWidth; x++)
                 {
                     setSolve = setSolve && objectArray[y,x].isCorrect();
-
+                    //Debug.Log($"setsolve {x},{y} is {objectArray[y,x].isCorrect()}");
                 }
 
             }
+            Debug.Log($"last setsolve is {setSolve}");
             if (setSolve)
             {
                 Debug.Log("Puzzle Solved");
                 puzzleSolve = true;
-                ExitPuzzle();
+                //ExitPuzzle();
             }
             handleCount = 0; 
         }

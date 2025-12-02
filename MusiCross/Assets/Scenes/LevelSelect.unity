@@ -940,9 +940,9 @@ MonoBehaviour:
   buttonOutput: 0
   audioSource: {fileID: 0}
   songName: 
-  musicFileName: 
+  musicFileName: zelda_music
   musicDropDown: {fileID: 0}
-  scene: SampleScene
+  scene: Level3
 --- !u!114 &405390532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,9 +1506,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c1: {fileID: 8300000, guid: 74f6cb90f6c1bff4dbe9ea0f2a92e283, type: 3}
   c2: {fileID: 8300000, guid: dd3184c24adf9476c812035bc0d4d537, type: 3}
-  c3: {fileID: 0}
-  c4: {fileID: 0}
-  c5: {fileID: 0}
+  c3: {fileID: 8300000, guid: 890edbfa7d28fb949b6bd0543478974e, type: 3}
+  c4: {fileID: 8300000, guid: cc11991aea0475b4eafa6996c4de6aaf, type: 3}
+  c5: {fileID: 8300000, guid: f6b8b1f1cc2a39144bc7e97735563e67, type: 3}
 --- !u!4 &587375726
 Transform:
   m_ObjectHideFlags: 0
@@ -1655,7 +1655,7 @@ MonoBehaviour:
   buttonOutput: 0
   audioSource: {fileID: 0}
   songName: 
-  musicFileName: 
+  musicFileName: ff_music
   musicDropDown: {fileID: 0}
   scene: 
 --- !u!114 &635442963
@@ -3420,9 +3420,9 @@ MonoBehaviour:
   buttonOutput: 0
   audioSource: {fileID: 0}
   songName: 
-  musicFileName: 
+  musicFileName: ff_music
   musicDropDown: {fileID: 0}
-  scene: SampleScene
+  scene: Level5
 --- !u!114 &1561589808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4151,9 +4151,9 @@ MonoBehaviour:
   buttonOutput: 0
   audioSource: {fileID: 0}
   songName: 
-  musicFileName: 
+  musicFileName: christmas_music
   musicDropDown: {fileID: 0}
-  scene: SampleScene
+  scene: Level4
 --- !u!114 &1759720281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4471,7 +4471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonOutput: 0
   audioSource: {fileID: 0}
-  songName: 
+  songName: Chopin - Nocturne
   musicFileName: title_music
   musicDropDown: {fileID: 0}
   scene: Level1
